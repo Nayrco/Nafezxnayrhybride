@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NAFEZ x NAYR — Coaching Sportif d'Élite</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --accent: #00ffaa;
+  --bg: #060606;
+  --bg2: #0a0a0a;
+  --bg3: #0d0d0d;
+  --border: rgba(255,255,255,0.06);
+  --text: #f0f0f0;
+  --muted: rgba(240,240,240,0.42);
+}
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── NAV ── */
+nav {
+  display: -webkit-flex; display: flex;
+  -webkit-align-items: center; align-items: center;
+  -webkit-justify-content: space-between; justify-content: space-between;
+  padding: 18px 56px;
+  background: rgba(6,6,6,0.92);
+  -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  position: -webkit-sticky; position: sticky;
+  top: 0; z-index: 100;
+}
+.logo { font-size: 18px; font-weight: 900; letter-spacing: -0.05em; color: var(--text); text-decoration: none; cursor: pointer; }
+.logo .x { color: var(--accent); margin: 0 2px; }
+.nav-links { display: -webkit-flex; display: flex; -webkit-align-items: center; align-items: center; gap: 32px; list-style: none; }
+.nav-links a { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.15em; color: var(--muted); text-decoration: none; -webkit-transition: color .2s; transition: color .2s; cursor: pointer; }
+.nav-links a:hover { color: var(--text); }
+.nav-cta { background: var(--accent) !important; color: #060606 !important; font-weight: 800 !important; padding: 10px 24px; border-radius: 999px; cursor: pointer; }
+
+/* ── PAGES ── */
+.page { display: none; }
+.page.active { display: block; }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: -webkit-flex; display: flex;
+  -webkit-flex-direction: column; flex-direction: column;
+  -webkit-align-items: center; align-items: center;
+  -webkit-justify-content: center; justify-content: center;
+  text-align: center; padding: 120px 56px 80px;
+  position: relative; overflow: hidden;
+}
+.hero-bg { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.hero-glow {
+  position: absolute; width: 700px; height: 700px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,255,170,0.07) 0%, transparent 65%);
+  top: 50%; left: 50%;
+  -webkit-transform: translate(-50%,-50%); transform: translate(-50%,-50%);
+}
+.hero-ring {
+  position: absolute; border-radius: 50%;
+  border: 1px solid rgba(0,255,170,0.07);
+  top: 50%; left: 50%;
+  -webkit-transform: translate(-50%,-50%); transform: translate(-50%,-50%);
+  -webkit-animation: ringPulse 4s ease-in-out infinite; animation: ringPulse 4s ease-in-out infinite;
+}
+.r1 { width: 380px; height: 380px; }
+.r2 { width: 540px; height: 540px; -webkit-animation-delay:.9s; animation-delay:.9s; border-color: rgba(0,255,170,0.04); }
+.r3 { width: 700px; height: 700px; -webkit-animation-delay:1.8s; animation-delay:1.8s; border-color: rgba(0,255,170,0.02); }
+@-webkit-keyframes ringPulse {
+  0%,100%{opacity:1;-webkit-transform:translate(-50%,-50%) scale(1);transform:translate(-50%,-50%) scale(1)}
+  50%{opacity:.3;-webkit-transform:translate(-50%,-50%) scale(1.04);transform:translate(-50%,-50%) scale(1.04)}
+}
+@keyframes ringPulse {
+  0%,100%{opacity:1;transform:translate(-50%,-50%) scale(1)}
+  50%{opacity:.3;transform:translate(-50%,-50%) scale(1.04)}
+}
+.hero-tag { font-size: 10px; font-weight: 600; letter-spacing: 0.4em; text-transform: uppercase; color: var(--accent); margin-bottom: 24px; position: relative; z-index:1; opacity:0; -webkit-animation: fadeUp .9s cubic-bezier(.16,1,.3,1) forwards .3s; animation: fadeUp .9s cubic-bezier(.16,1,.3,1) forwards .3s; }
+.hero h1 { font-size: 84px; font-weight: 900; letter-spacing: -0.05em; line-height: .88; margin-bottom: 28px; position: relative; z-index:1; opacity:0; -webkit-animation: fadeUp .9s cubic-bezier(.16,1,.3,1) forwards .5s; animation: fadeUp .9s cubic-bezier(.16,1,.3,1) forwards .5s; }
+.hero h1 em { font-style: normal; color: var(--accent); }
+.hero-sub { font-size: 16px; color: var(--muted); max-width: 480px; line-height: 1.75; margin-bottom: 44px; position: relative; z-index:1; opacity:0; -webkit-animation: fadeUp .9s cubic-bezier(.16,1,.3,1) forwards .7s; animation: fadeUp .9s cubic-bezier(.16,1,.3,1) forwards .7s; }
+.hero-btns { display:-webkit-flex;display:flex;gap:14px;-webkit-justify-content:center;justify-content:center;-webkit-flex-wrap:wrap;flex-wrap:wrap;position:relative;z-index:1;opacity:0;-webkit-animation:fadeUp .9s cubic-bezier(.16,1,.3,1) forwards .9s;animation:fadeUp .9s cubic-bezier(.16,1,.3,1) forwards .9s; }
+@-webkit-keyframes fadeUp { from{opacity:0;-webkit-transform:translateY(30px);transform:translateY(30px)} to{opacity:1;-webkit-transform:translateY(0);transform:translateY(0)} }
+@keyframes fadeUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+
+/* ── BUTTONS ── */
+.btn-p { background:var(--accent);color:#060606;font-size:13px;font-weight:700;padding:15px 36px;border-radius:999px;text-decoration:none;border:none;cursor:pointer;display:-webkit-inline-flex;display:inline-flex;-webkit-align-items:center;align-items:center;gap:8px;-webkit-transition:opacity .2s;transition:opacity .2s;font-family:inherit; }
+.btn-p:hover { opacity:.85; }
+.btn-s { border:1px solid rgba(255,255,255,0.14);color:var(--text);font-size:13px;font-weight:500;padding:15px 36px;border-radius:999px;text-decoration:none;background:none;cursor:pointer;display:-webkit-inline-flex;display:inline-flex;-webkit-align-items:center;align-items:center;gap:8px;-webkit-transition:border-color .2s;transition:border-color .2s;font-family:inherit; }
+.btn-s:hover { border-color:rgba(0,255,170,.3); }
+
+/* ── STATS ── */
+.stats-bar { display:-webkit-flex;display:flex;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--bg2); }
+.stat-item { -webkit-flex:1;flex:1;padding:40px 24px;text-align:center;border-right:1px solid var(--border); }
+.stat-item:last-child { border-right:none; }
+.stat-n { font-size:42px;font-weight:900;letter-spacing:-0.04em;color:var(--accent); }
+.stat-l { font-size:10px;text-transform:uppercase;letter-spacing:.2em;color:var(--muted);margin-top:6px; }
+
+/* ── SECTIONS ── */
+.section { padding: 96px 56px; }
+.section-alt { background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border); }
+.s-tag { font-size:10px;font-weight:600;letter-spacing:.4em;text-transform:uppercase;color:var(--accent);margin-bottom:14px; }
+.s-title { font-size:50px;font-weight:900;letter-spacing:-0.04em;line-height:.92;margin-bottom:56px; }
+.s-title em { font-style:normal;color:var(--accent); }
+.s-sub { font-size:15px;color:var(--muted);max-width:500px;line-height:1.75;margin-top:-40px;margin-bottom:56px; }
+
+/* ── PROGRAMME CARDS ── */
+.prog-grid { display:-webkit-flex;display:flex;gap:24px; }
+.prog-card { -webkit-flex:1;flex:1;background:var(--bg3);padding:40px 32px;border:1px solid var(--border);position:relative;border-radius:2px;-webkit-transition:border-color .3s;transition:border-color .3s; }
+.prog-card:hover { border-color:rgba(0,255,170,.2); }
+.prog-card.featured { border-color:rgba(0,255,170,.28); }
+.prog-badge { position:absolute;top:20px;right:20px;background:var(--accent);color:#060606;font-size:9px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:4px 12px;border-radius:999px; }
+.prog-tag { font-size:10px;font-weight:700;color:rgba(0,255,170,.5);letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px; }
+.prog-title { font-size:24px;font-weight:900;letter-spacing:-.03em;margin-bottom:10px; }
+.prog-desc { font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:28px; }
+.prog-weeks { display:-webkit-inline-flex;display:inline-flex;-webkit-align-items:center;align-items:center;gap:6px;background:rgba(0,255,170,.07);border:1px solid rgba(0,255,170,.15);color:var(--accent);font-size:11px;font-weight:700;padding:5px 12px;border-radius:999px;margin-bottom:24px; }
+.prog-feats { margin-bottom:28px; }
+.prog-feat { display:-webkit-flex;display:flex;-webkit-align-items:flex-start;align-items:flex-start;gap:8px;font-size:12px;color:rgba(240,240,240,.65);margin-bottom:9px;line-height:1.5; }
+.prog-feat::before { content:'';width:5px;height:5px;min-width:5px;border-radius:50%;background:var(--accent);margin-top:5px; }
+.prog-price { font-size:42px;font-weight:900;letter-spacing:-.04em; }
+.prog-price sup { font-size:20px;vertical-align:super; }
+.prog-period { font-size:11px;color:var(--muted);margin-top:4px;margin-bottom:28px; }
+.prog-buy { display:block;width:100%;padding:14px;background:var(--accent);color:#060606;font-size:13px;font-weight:800;text-align:center;border-radius:999px;text-decoration:none;-webkit-transition:opacity .2s;transition:opacity .2s;border:none;cursor:pointer;font-family:inherit; }
+.prog-buy:hover { opacity:.85; }
+.prog-buy.outline { background:none;color:var(--text);border:1px solid rgba(255,255,255,.15); }
+.prog-buy.outline:hover { border-color:rgba(0,255,170,.3); }
+
+/* ── COACHING ── */
+.coaching-wrap { display:-webkit-flex;display:flex;gap:72px;-webkit-align-items:flex-start;align-items:flex-start;padding-top:100px; }
+.coaching-left { -webkit-flex:1;flex:1; }
+.coaching-right { -webkit-flex:1;flex:1; }
+.coaching-left h1 { font-size:60px;font-weight:900;letter-spacing:-.05em;line-height:.9;margin-bottom:20px; }
+.coaching-left h1 em { font-style:normal;color:var(--accent); }
+.coaching-left p { font-size:15px;color:var(--muted);line-height:1.75;margin-bottom:32px;max-width:420px; }
+.steps { margin-top:40px; }
+.step { display:-webkit-flex;display:flex;gap:18px;-webkit-align-items:flex-start;align-items:flex-start;margin-bottom:28px; }
+.step-num { width:36px;height:36px;min-width:36px;border-radius:50%;border:1px solid rgba(0,255,170,.25);display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;-webkit-justify-content:center;justify-content:center;font-size:11px;font-weight:800;color:var(--accent); }
+.step-title { font-size:14px;font-weight:700;margin-bottom:4px; }
+.step-desc { font-size:12px;color:var(--muted);line-height:1.65; }
+
+/* ── FORM ── */
+.form-card { background:var(--bg3);border:1px solid var(--border);padding:40px;border-radius:2px; }
+.form-card h3 { font-size:20px;font-weight:800;margin-bottom:8px;letter-spacing:-.02em; }
+.form-card .form-sub { font-size:12px;color:var(--muted);margin-bottom:28px; }
+.form-group { margin-bottom:16px; }
+.form-group label { font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);display:block;margin-bottom:7px; }
+.form-group input,.form-group select,.form-group textarea { width:100%;padding:12px 16px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text);font-size:13px;font-family:inherit;outline:none;border-radius:2px;-webkit-transition:border-color .2s;transition:border-color .2s;-webkit-appearance:none;appearance:none; }
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus { border-color:rgba(0,255,170,.4); }
+.form-group select option { background:#1a1a1a; }
+.form-group textarea { resize:none; }
+.form-row { display:-webkit-flex;display:flex;gap:12px; }
+.form-row .form-group { -webkit-flex:1;flex:1; }
+.form-success { text-align:center;padding:60px 20px;display:none; }
+.form-success .check { width:56px;height:56px;border-radius:50%;background:rgba(0,255,170,.1);border:1px solid rgba(0,255,170,.3);display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;-webkit-justify-content:center;justify-content:center;margin:0 auto 20px;font-size:22px;color:var(--accent); }
+.form-success h3 { font-size:20px;font-weight:800;margin-bottom:8px; }
+.form-success p { font-size:13px;color:var(--muted); }
+.form-error { background:rgba(255,50,50,.1);border:1px solid rgba(255,50,50,.2);color:#ff6b6b;font-size:12px;padding:10px 14px;border-radius:2px;margin-top:12px;display:none; }
+
+/* ── TEMOIGNAGES ── */
+.testi-grid { display:-webkit-flex;display:flex;gap:2px; }
+.testi-card { -webkit-flex:1;flex:1;background:var(--bg3);padding:36px 32px;border:1px solid var(--border); }
+.testi-stars { display:-webkit-flex;display:flex;gap:4px;margin-bottom:18px; }
+.testi-stars span { width:6px;height:6px;border-radius:50%;background:var(--accent);display:block; }
+.testi-q { font-size:13px;color:rgba(240,240,240,.72);line-height:1.8;margin-bottom:22px;font-style:italic; }
+.testi-name { font-size:13px;font-weight:700; }
+.testi-role { font-size:11px;color:var(--muted);margin-top:3px; }
+.testi-result { display:-webkit-inline-flex;display:inline-flex;-webkit-align-items:center;align-items:center;gap:6px;background:rgba(0,255,170,.08);border:1px solid rgba(0,255,170,.15);color:var(--accent);font-size:11px;font-weight:700;padding:5px 12px;border-radius:999px;margin-top:14px; }
+
+/* ── METHOD ── */
+.method-grid { display:-webkit-flex;display:flex;gap:2px; }
+.method-step { -webkit-flex:1;flex:1;background:var(--bg3);padding:36px 28px;border:1px solid var(--border);text-align:center; }
+.method-n { width:38px;height:38px;border-radius:50%;border:1px solid rgba(0,255,170,.25);display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;-webkit-justify-content:center;justify-content:center;margin:0 auto 16px;font-size:11px;font-weight:800;color:var(--accent); }
+.method-t { font-size:15px;font-weight:800;letter-spacing:-.02em;margin-bottom:10px; }
+.method-d { font-size:12px;color:var(--muted);line-height:1.7; }
+
+/* ── CTA ── */
+.cta-band { padding:120px 56px;text-align:center;border-top:1px solid var(--border); }
+.cta-band h2 { font-size:58px;font-weight:900;letter-spacing:-.05em;line-height:.9;margin-bottom:20px; }
+.cta-band h2 em { font-style:normal;color:var(--accent); }
+.cta-band p { font-size:15px;color:var(--muted);max-width:420px;margin:0 auto 40px;line-height:1.7; }
+.cta-btns { display:-webkit-flex;display:flex;gap:14px;-webkit-justify-content:center;justify-content:center;-webkit-flex-wrap:wrap;flex-wrap:wrap; }
+
+/* ── CONTACT ── */
+.contact-wrap { display:-webkit-flex;display:flex;gap:64px;-webkit-align-items:flex-start;align-items:flex-start;padding-top:100px; }
+.contact-left { -webkit-flex:1.3;flex:1.3; }
+.contact-right { -webkit-flex:1;flex:1; }
+.contact-item { display:-webkit-flex;display:flex;gap:16px;-webkit-align-items:flex-start;align-items:flex-start;margin-bottom:28px;padding-bottom:28px;border-bottom:1px solid var(--border); }
+.contact-item:last-child { border-bottom:none; }
+.contact-icon { width:40px;height:40px;min-width:40px;border-radius:50%;border:1px solid rgba(0,255,170,.2);display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;-webkit-justify-content:center;justify-content:center; }
+.contact-icon svg { width:16px;height:16px;stroke:var(--accent);fill:none;stroke-width:2; }
+.contact-label { font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-bottom:4px; }
+.contact-val { font-size:14px;font-weight:600; }
+.contact-sub { font-size:12px;color:var(--muted);margin-top:4px;line-height:1.6; }
+
+/* ── FOOTER ── */
+footer { background:#040404;border-top:1px solid var(--border);padding:40px 56px;display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;-webkit-justify-content:space-between;justify-content:space-between;-webkit-flex-wrap:wrap;flex-wrap:wrap;gap:20px; }
+.footer-logo { font-size:16px;font-weight:900;letter-spacing:-.05em;color:var(--text);text-decoration:none;cursor:pointer; }
+.footer-logo .x { color:var(--accent);margin:0 2px; }
+.footer-links { display:-webkit-flex;display:flex;gap:28px;list-style:none; }
+.footer-links a { font-size:11px;color:rgba(240,240,240,.28);text-transform:uppercase;letter-spacing:.1em;text-decoration:none;cursor:pointer;-webkit-transition:color .2s;transition:color .2s; }
+.footer-links a:hover { color:var(--text); }
+.footer-copy { font-size:11px;color:rgba(240,240,240,.18); }
+
+/* ── SCROLL REVEAL ── */
+.reveal { opacity:0;-webkit-transform:translateY(36px);transform:translateY(36px);-webkit-transition:opacity .8s cubic-bezier(.16,1,.3,1),-webkit-transform .8s cubic-bezier(.16,1,.3,1);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1); }
+.reveal.in { opacity:1;-webkit-transform:translateY(0);transform:translateY(0); }
+.d1{-webkit-transition-delay:.1s;transition-delay:.1s}
+.d2{-webkit-transition-delay:.2s;transition-delay:.2s}
+.d3{-webkit-transition-delay:.3s;transition-delay:.3s}
+.d4{-webkit-transition-delay:.4s;transition-delay:.4s}
+
+/* ── MOBILE ── */
+@media(max-width:768px){
+  nav{padding:16px 24px}
+  .nav-links{display:none}
+  .hero{padding:100px 24px 60px}
+  .hero h1{font-size:48px}
+  .stats-bar{-webkit-flex-wrap:wrap;flex-wrap:wrap}
+  .stat-item{-webkit-flex:0 0 50%;flex:0 0 50%;border-bottom:1px solid var(--border)}
+  .section{padding:64px 24px}
+  .s-title{font-size:34px}
+  .prog-grid,.testi-grid,.method-grid{-webkit-flex-direction:column;flex-direction:column}
+  .coaching-wrap,.contact-wrap{-webkit-flex-direction:column;flex-direction:column;padding:80px 24px 40px}
+  .coaching-left h1{font-size:42px}
+  .cta-band{padding:80px 24px}
+  .cta-band h2{font-size:38px}
+  footer{padding:32px 24px;-webkit-flex-direction:column;flex-direction:column;text-align:center}
+  .form-row{-webkit-flex-direction:column;flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo" onclick="showPage('home')">NAFEZ<span class="x"> x </span>NAYR</div>
+  <ul class="nav-links">
+    <li><a onclick="showPage('home')">Accueil</a></li>
+    <li><a onclick="showPage('programmes')">Programmes</a></li>
+    <li><a onclick="showPage('coaching')">Coaching 1:1</a></li>
+    <li><a onclick="showPage('temoignages')">Résultats</a></li>
+    <li><a onclick="showPage('contact')">Contact</a></li>
+    <li><a onclick="showPage('coaching')" class="nav-cta">Commencer</a></li>
+  </ul>
+</nav>
+
+<!-- ════ PAGE : ACCUEIL ════ -->
+<div id="page-home" class="page active">
+
+  <section class="hero">
+    <div class="hero-bg">
+      <div class="hero-glow"></div>
+      <div class="hero-ring r1"></div>
+      <div class="hero-ring r2"></div>
+      <div class="hero-ring r3"></div>
+    </div>
+    <p class="hero-tag">Coaching Sportif d'Élite · Poids de Corps</p>
+    <h1>Transforme<br>ton corps.<br><em>Pour de vrai.</em></h1>
+    <p class="hero-sub">Des programmes conçus pour te faire progresser semaine après semaine — sans salle, sans matériel complexe, sans excuses.</p>
+    <div class="hero-btns">
+      <button class="btn-p" onclick="showPage('programmes')">
+        Voir les Programmes
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+      <button class="btn-s" onclick="showPage('coaching')">Coaching Personnalisé</button>
+    </div>
+  </section>
+
+  <div class="stats-bar">
+    <div class="stat-item reveal d1"><div class="stat-n">175K</div><div class="stat-l">Abonnés TikTok & Instagram</div></div>
+    <div class="stat-item reveal d2"><div class="stat-n">4</div><div class="stat-l">Semaines de programme</div></div>
+    <div class="stat-item reveal d3"><div class="stat-n">0</div><div class="stat-l">Matériel requis</div></div>
+    <div class="stat-item reveal d4"><div class="stat-n">4.9</div><div class="stat-l">Note Moyenne</div></div>
+  </div>
+
+  <!-- Aperçu programmes -->
+  <section class="section">
+    <div class="reveal">
+      <p class="s-tag">Programmes</p>
+      <h2 class="s-title">Choisis ton <em>niveau</em></h2>
+    </div>
+    <div class="prog-grid">
+      <div class="prog-card reveal d1">
+        <div class="prog-tag">Débutant</div>
+        <div class="prog-title">Programme Starter</div>
+        <div class="prog-desc">Construis tes bases. Force, endurance et confiance en 4 semaines — sans matériel.</div>
+        <div class="prog-price"><sup>€</sup>29<span style="font-size:22px">.99</span></div>
+        <div class="prog-period">Paiement unique · Accès à vie</div>
+        <a href="https://buy.stripe.com/00w00j08Y1TMeIK3pecEw01" target="_blank" class="prog-buy outline">Obtenir ce programme</a>
+      </div>
+      <div class="prog-card featured reveal d2">
+        <div class="prog-badge">Programme Complet</div>
+        <div class="prog-tag">Avancé</div>
+        <div class="prog-title">Programme Elite</div>
+        <div class="prog-desc">Le programme complet. 4 semaines intensives pour transformer ton physique au niveau supérieur.</div>
+        <div class="prog-price"><sup>€</sup>99<span style="font-size:22px">.99</span></div>
+        <div class="prog-period">Paiement unique · Accès à vie</div>
+        <a href="https://buy.stripe.com/00wdR9f3S0PIfMO3pecEw00" target="_blank" class="prog-buy">Obtenir ce programme</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Méthode -->
+  <section class="section section-alt">
+    <div class="reveal center" style="text-align:center">
+      <p class="s-tag">La Méthode</p>
+      <h2 class="s-title">Système de <em>Précision</em></h2>
+    </div>
+    <div class="method-grid">
+      <div class="method-step reveal d1"><div class="method-n">01</div><div class="method-t">Évaluer</div><p class="method-d">Analyse de ton niveau, objectifs et contraintes. On construit sur du solide.</p></div>
+      <div class="method-step reveal d2"><div class="method-n">02</div><div class="method-t">Programmer</div><p class="method-d">Plan d'entraînement progressif, basé sur la science du mouvement.</p></div>
+      <div class="method-step reveal d3"><div class="method-n">03</div><div class="method-t">Exécuter</div><p class="method-d">Séances guidées, exercices détaillés, suivi semaine par semaine.</p></div>
+      <div class="method-step reveal d4"><div class="method-n">04</div><div class="method-t">Progresser</div><p class="method-d">Intensité croissante semaine après semaine. Tu ne stagnes jamais.</p></div>
+    </div>
+  </section>
+
+  <div class="cta-band reveal">
+    <h2>Prêt à te <em>transformer ?</em></h2>
+    <p>Rejoins des centaines de personnes qui ont choisi de passer à l'action avec NAFEZ x NAYR.</p>
+    <div class="cta-btns">
+      <button class="btn-p" onclick="showPage('programmes')">Voir les Programmes</button>
+      <button class="btn-s" onclick="showPage('coaching')">Coaching 1:1</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- ════ PAGE : PROGRAMMES ════ -->
+<div id="page-programmes" class="page">
+  <section class="section" style="padding-top:120px">
+    <div class="reveal">
+      <p class="s-tag">Programmes</p>
+      <h2 class="s-title">Investis dans <em>toi-même</em></h2>
+      <p class="s-sub">Deux programmes construits sur la progression et la discipline. Zéro matériel requis — juste ton corps et ta volonté.</p>
+    </div>
+
+    <div class="prog-grid">
+      <!-- STARTER -->
+      <div class="prog-card reveal d1">
+        <div class="prog-tag">01 — Débutant</div>
+        <div class="prog-title">Programme Starter</div>
+        <div class="prog-desc">Conçu pour les débutants ou ceux qui reprennent l'activité physique. Tu vas construire une base solide en 4 semaines avec des exercices simples et efficaces.</div>
+        <div class="prog-weeks">4 semaines · Poids de corps</div>
+        <div class="prog-feats">
+          <div class="prog-feat">4 semaines de programmation progressive</div>
+          <div class="prog-feat">Haut du corps : tractions, dips, pompes</div>
+          <div class="prog-feat">Cardio ciblé : marche en pente, footing, HIIT</div>
+          <div class="prog-feat">Séances jambes et Full Body</div>
+          <div class="prog-feat">Jours de repos structurés avec conseils nutrition</div>
+          <div class="prog-feat">FAQ : gestion des progrès et de l'alimentation</div>
+          <div class="prog-feat">Zéro matériel requis</div>
+          <div class="prog-feat">Accès à vie · Mises à jour incluses</div>
+        </div>
+        <div class="prog-price"><sup>€</sup>29<span style="font-size:22px">.99</span></div>
+        <div class="prog-period">Paiement unique · Accès immédiat</div>
+        <a href="https://buy.stripe.com/00w00j08Y1TMeIK3pecEw01" target="_blank" class="prog-buy outline">Acheter ce programme</a>
+      </div>
+
+      <!-- ELITE -->
+      <div class="prog-card featured reveal d2">
+        <div class="prog-badge">Programme Complet</div>
+        <div class="prog-tag">02 — Avancé</div>
+        <div class="prog-title">Programme Elite</div>
+        <div class="prog-desc">Le programme complet pour ceux qui veulent aller plus loin. Plus de volume, plus d'intensité, plus de résultats. 4 semaines pour transformer ton physique.</div>
+        <div class="prog-weeks">4 semaines · Haute Intensité</div>
+        <div class="prog-feats">
+          <div class="prog-feat">Programme avancé haute intensité</div>
+          <div class="prog-feat">Haut du corps intensifié · Circuits Full Body</div>
+          <div class="prog-feat">Séances hybrides running + abdominaux</div>
+          <div class="prog-feat">Circuits 400m avec exercices enchaînés</div>
+          <div class="prog-feat">200 pompes + supersets avancés</div>
+          <div class="prog-feat">Progression semaine par semaine intégrée</div>
+          <div class="prog-feat">FAQ complète nutrition et récupération</div>
+          <div class="prog-feat">Accès à vie · Mises à jour incluses</div>
+        </div>
+        <div class="prog-price"><sup>€</sup>99<span style="font-size:22px">.99</span></div>
+        <div class="prog-period">Paiement unique · Accès immédiat</div>
+        <a href="https://buy.stripe.com/00wdR9f3S0PIfMO3pecEw00" target="_blank" class="prog-buy">Acheter ce programme</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta-band reveal">
+    <h2>Tu veux quelque chose de <em>sur mesure ?</em></h2>
+    <p>Le coaching 1:1 est fait pour toi. Programme 100% personnalisé, suivi hebdomadaire, accès direct.</p>
+    <button class="btn-p" onclick="showPage('coaching')">
+      Voir le Coaching 1:1
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </button>
+  </div>
+</div>
+
+<!-- ════ PAGE : COACHING 1:1 ════ -->
+<div id="page-coaching" class="page">
+  <section class="section coaching-wrap">
+    <div class="coaching-left reveal">
+      <p class="s-tag">Coaching Personnalisé</p>
+      <h1>Un suivi <em>100%<br>sur mesure</em></h1>
+      <p>Pas de programme générique. Je construis ton plan selon ton corps, ton mode de vie et tes objectifs précis. Tu n'es jamais seul.</p>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">01</div>
+          <div><div class="step-title">Candidature</div><div class="step-desc">Remplis le formulaire avec tes objectifs, ton niveau et tes contraintes.</div></div>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <div><div class="step-title">Appel Découverte</div><div class="step-desc">On discute de tes objectifs et je t'explique exactement comment on va travailler ensemble.</div></div>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <div><div class="step-title">Programme Sur Mesure</div><div class="step-desc">Entraînement + nutrition 100% personnalisés selon ta physiologie et tes objectifs.</div></div>
+        </div>
+        <div class="step">
+          <div class="step-num">04</div>
+          <div><div class="step-title">Suivi Hebdomadaire</div><div class="step-desc">Check-in chaque semaine. Ajustements en temps réel. Tu progresses en permanence.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="coaching-right reveal d2">
+      <div class="form-card">
+        <h3>Postuler au Coaching</h3>
+        <p class="form-sub">Je réponds sous 24h pour planifier un appel découverte gratuit.</p>
+        <div id="coaching-form-wrap">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Prénom</label>
+              <input type="text" id="c-prenom" placeholder="Ton prénom">
+            </div>
+            <div class="form-group">
+              <label>Nom</label>
+              <input type="text" id="c-nom" placeholder="Ton nom">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" id="c-email" placeholder="toi@email.com">
+          </div>
+          <div class="form-group">
+            <label>Objectif Principal</label>
+            <select id="c-objectif">
+              <option value="">Sélectionne ton objectif</option>
+              <option>Prise de muscle / Masse</option>
+              <option>Perte de poids / Sèche</option>
+              <option>Recomposition corporelle</option>
+              <option>Performance et endurance</option>
+              <option>Remise en forme générale</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Niveau d'Expérience</label>
+            <select id="c-niveau">
+              <option value="">Sélectionne ton niveau</option>
+              <option>Débutant (moins d'1 an)</option>
+              <option>Intermédiaire (1-3 ans)</option>
+              <option>Avancé (3+ ans)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Parle-moi de toi</label>
+            <textarea rows="4" id="c-message" placeholder="Ton objectif, ta situation actuelle, tes contraintes..."></textarea>
+          </div>
+          <button class="btn-p" style="width:100%;justify-content:center" onclick="submitCoaching()">
+            Envoyer la Candidature
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+          <div class="form-error" id="coaching-error">Remplis tous les champs avant d'envoyer.</div>
+        </div>
+        <div class="form-success" id="coaching-success">
+          <div class="check">✓</div>
+          <h3>Candidature Reçue !</h3>
+          <p>Je reviendrai vers toi sous 24h pour planifier un appel découverte gratuit.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tarifs coaching -->
+  <section class="section section-alt">
+    <div class="reveal" style="text-align:center">
+      <p class="s-tag">Tarifs Coaching 1:1</p>
+      <h2 class="s-title">Investis dans <em>toi-même</em></h2>
+    </div>
+    <div class="prog-grid" style="max-width:700px;margin:0 auto">
+      <div class="prog-card reveal d1">
+        <div class="prog-tag">Coaching</div>
+        <div class="prog-title">1 Mois</div>
+        <div class="prog-feats">
+          <div class="prog-feat">Programme personnalisé complet</div>
+          <div class="prog-feat">2 check-ins hebdomadaires</div>
+          <div class="prog-feat">Accès WhatsApp direct</div>
+          <div class="prog-feat">Ajustements en continu</div>
+        </div>
+        <div class="prog-price"><sup>€</sup>197</div>
+        <div class="prog-period">par mois</div>
+        <button class="prog-buy outline" onclick="showPage('coaching');window.scrollTo(0,0)">Postuler</button>
+      </div>
+      <div class="prog-card featured reveal d2">
+        <div class="prog-badge">Recommandé</div>
+        <div class="prog-tag">Coaching</div>
+        <div class="prog-title">3 Mois</div>
+        <div class="prog-feats">
+          <div class="prog-feat">Tout ce qui est dans 1 mois</div>
+          <div class="prog-feat">Appel mensuel 1h en visio</div>
+          <div class="prog-feat">Analyse photos de progression</div>
+          <div class="prog-feat">Plan nutrition avancé</div>
+          <div class="prog-feat">Économie de 15%</div>
+        </div>
+        <div class="prog-price"><sup>€</sup>497</div>
+        <div class="prog-period">pour 3 mois</div>
+        <button class="prog-buy" onclick="showPage('coaching');window.scrollTo(0,0)">Postuler</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ════ PAGE : RÉSULTATS ════ -->
+<div id="page-temoignages" class="page">
+  <section class="section" style="padding-top:120px">
+    <div class="reveal">
+      <p class="s-tag">Résultats</p>
+      <h2 class="s-title">De vraies <em>Transformations</em></h2>
+      <p class="s-sub">Des personnes qui ont décidé de passer à l'action. Voici leurs résultats.</p>
+    </div>
+    <div class="testi-grid" style="margin-bottom:2px">
+      <div class="testi-card reveal d1">
+        <div class="testi-stars"><span></span><span></span><span></span><span></span><span></span></div>
+        <p class="testi-q">« En 4 semaines avec le programme Elite, j'ai vu une vraie différence. Les circuits 400m sont intenses mais efficaces. Je recommande à 100%. »</p>
+        <div class="testi-name">Mehdi T.</div>
+        <div class="testi-role">Programme Elite</div>
+        <div class="testi-result">Transformation visible · 4 semaines</div>
+      </div>
+      <div class="testi-card reveal d2">
+        <div class="testi-stars"><span></span><span></span><span></span><span></span><span></span></div>
+        <p class="testi-q">« J'avais jamais tenu plus de 2 semaines dans un programme. Là j'ai terminé le Starter complet. Simple, clair, progressif. Parfait pour commencer. »</p>
+        <div class="testi-name">Laura K.</div>
+        <div class="testi-role">Programme Starter</div>
+        <div class="testi-result">Programme complété · 4 semaines</div>
+      </div>
+      <div class="testi-card reveal d3">
+        <div class="testi-stars"><span></span><span></span><span></span><span></span><span></span></div>
+        <p class="testi-q">« Le coaching 1:1 c'est autre chose. Nafez adapte vraiment le programme à toi. En 6 semaines j'ai perdu 5kg et je me sens beaucoup plus fort. »</p>
+        <div class="testi-name">Yanis R.</div>
+        <div class="testi-role">Coaching 1:1</div>
+        <div class="testi-result">-5kg · +Force · 6 semaines</div>
+      </div>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card reveal d1">
+        <div class="testi-stars"><span></span><span></span><span></span><span></span><span></span></div>
+        <p class="testi-q">« Les séances haut du corps du programme Elite sont intenses. Tractions, dips, pompes en circuit — j'ai progressé sur tous les exercices. »</p>
+        <div class="testi-name">Camille D.</div>
+        <div class="testi-role">Programme Elite</div>
+        <div class="testi-result">Force x2 · Haut du corps</div>
+      </div>
+      <div class="testi-card reveal d2">
+        <div class="testi-stars"><span></span><span></span><span></span><span></span><span></span></div>
+        <p class="testi-q">« À 40 ans je pensais pas pouvoir reprendre le sport sérieusement. Le programme Starter m'a prouvé le contraire. Clair, accessible, efficace. »</p>
+        <div class="testi-name">Stéphane M.</div>
+        <div class="testi-role">Programme Starter</div>
+        <div class="testi-result">Reprise réussie · 4 semaines</div>
+      </div>
+      <div class="testi-card reveal d3">
+        <div class="testi-stars"><span></span><span></span><span></span><span></span><span></span></div>
+        <p class="testi-q">« Simple, direct, sans bullshit. Nafez va droit au but. Les exercices sont bien expliqués et les résultats parlent d'eux-mêmes. »</p>
+        <div class="testi-name">Aïcha S.</div>
+        <div class="testi-role">Coaching 1:1</div>
+        <div class="testi-result">Silhouette affinée · 8 semaines</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta-band reveal">
+    <h2>C'est ton tour de <em>transformer</em></h2>
+    <p>Rejoins ceux qui ont choisi de passer à l'action. Commence aujourd'hui.</p>
+    <div class="cta-btns">
+      <button class="btn-p" onclick="showPage('programmes')">Voir les Programmes</button>
+      <button class="btn-s" onclick="showPage('coaching')">Coaching 1:1</button>
+    </div>
+  </div>
+</div>
+
+<!-- ════ PAGE : CONTACT ════ -->
+<div id="page-contact" class="page">
+  <section class="section contact-wrap">
+    <div class="contact-left reveal">
+      <p class="s-tag">Contact</p>
+      <h2 class="s-title" style="margin-bottom:40px">Parlons de tes <em>Objectifs</em></h2>
+      <div class="contact-item">
+        <div class="contact-icon">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <div>
+          <div class="contact-label">Email</div>
+          <div class="contact-val">contact@nafez.co</div>
+          <div class="contact-sub">Réponse sous 24h</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">
+          <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </div>
+        <div>
+          <div class="contact-label">Instagram</div>
+          <div class="contact-val">@nafez.coach</div>
+          <div class="contact-sub">DM ouvert · Réponse rapide</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">
+          <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+        </div>
+        <div>
+          <div class="contact-label">TikTok</div>
+          <div class="contact-val">@nafez</div>
+          <div class="contact-sub">100K+ abonnés</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-right reveal d2">
+      <div class="form-card">
+        <h3>Envoyer un Message</h3>
+        <p class="form-sub">Une question sur un programme ? Un partenariat ? Écris-moi.</p>
+        <div id="contact-form-wrap">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Prénom</label>
+              <input type="text" id="ct-prenom" placeholder="Ton prénom">
+            </div>
+            <div class="form-group">
+              <label>Nom</label>
+              <input type="text" id="ct-nom" placeholder="Ton nom">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" id="ct-email" placeholder="toi@email.com">
+          </div>
+          <div class="form-group">
+            <label>Sujet</label>
+            <select id="ct-sujet">
+              <option value="">Sélectionne un sujet</option>
+              <option>Question sur un programme</option>
+              <option>Coaching 1:1</option>
+              <option>Partenariat / Collaboration</option>
+              <option>Autre</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Message</label>
+            <textarea rows="5" id="ct-message" placeholder="Ton message..."></textarea>
+          </div>
+          <button class="btn-p" style="width:100%;justify-content:center" onclick="submitContact()">
+            Envoyer
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+          </button>
+          <div class="form-error" id="contact-error">Remplis tous les champs avant d'envoyer.</div>
+        </div>
+        <div class="form-success" id="contact-success">
+          <div class="check">✓</div>
+          <h3>Message Envoyé !</h3>
+          <p>Je te réponds sous 24 heures.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo" onclick="showPage('home')">NAFEZ<span class="x"> x </span>NAYR</div>
+  <ul class="footer-links">
+    <li><a onclick="showPage('programmes')">Programmes</a></li>
+    <li><a onclick="showPage('coaching')">Coaching 1:1</a></li>
+    <li><a onclick="showPage('temoignages')">Résultats</a></li>
+    <li><a onclick="showPage('contact')">Contact</a></li>
+  </ul>
+  <p class="footer-copy">© 2026 NAFEZ x NAYR. Tous droits réservés.</p>
+</footer>
+
+<script>
+emailjs.init('XaMIyq8J3OnuJy8fU');
+
+function showPage(id) {
+  var pages = document.querySelectorAll('.page');
+  for (var i = 0; i < pages.length; i++) pages[i].classList.remove('active');
+  var t = document.getElementById('page-' + id);
+  if (t) { t.classList.add('active'); window.scrollTo(0,0); setTimeout(triggerReveal, 80); }
+}
+
+function triggerReveal() {
+  var els = document.querySelectorAll('.page.active .reveal');
+  for (var i = 0; i < els.length; i++) els[i].classList.remove('in');
+  var obs = new IntersectionObserver(function(entries) {
+    for (var j = 0; j < entries.length; j++) {
+      if (entries[j].isIntersecting) { entries[j].target.classList.add('in'); obs.unobserve(entries[j].target); }
+    }
+  }, { threshold: 0.08, rootMargin: '-20px' });
+  for (var k = 0; k < els.length; k++) obs.observe(els[k]);
+}
+
+function submitCoaching() {
+  var prenom = document.getElementById('c-prenom').value.trim();
+  var nom = document.getElementById('c-nom').value.trim();
+  var email = document.getElementById('c-email').value.trim();
+  var objectif = document.getElementById('c-objectif').value;
+  var niveau = document.getElementById('c-niveau').value;
+  var message = document.getElementById('c-message').value.trim();
+  var errEl = document.getElementById('coaching-error');
+  if (!prenom || !nom || !email || !objectif || !niveau || !message) {
+    errEl.style.display = 'block'; return;
+  }
+  errEl.style.display = 'none';
+  emailjs.send('service_oh5c5iu', 'template_nt0z8y6', {
+    from_name: prenom + ' ' + nom,
+    from_email: email,
+    objectif: objectif,
+    niveau: niveau,
+    message: message
+  }).then(function() {
+    document.getElementById('coaching-form-wrap').style.display = 'none';
+    document.getElementById('coaching-success').style.display = 'block';
+  }, function() {
+    errEl.textContent = 'Erreur envoi. Réessaie ou contacte-moi par Instagram.';
+    errEl.style.display = 'block';
+  });
+}
+
+function submitContact() {
+  var prenom = document.getElementById('ct-prenom').value.trim();
+  var nom = document.getElementById('ct-nom').value.trim();
+  var email = document.getElementById('ct-email').value.trim();
+  var sujet = document.getElementById('ct-sujet').value;
+  var message = document.getElementById('ct-message').value.trim();
+  var errEl = document.getElementById('contact-error');
+  if (!prenom || !nom || !email || !sujet || !message) {
+    errEl.style.display = 'block'; return;
+  }
+  errEl.style.display = 'none';
+  emailjs.send('service_oh5c5iu', 'template_nt0z8y6', {
+    from_name: prenom + ' ' + nom,
+    from_email: email,
+    objectif: sujet,
+    niveau: 'Contact général',
+    message: message
+  }).then(function() {
+    document.getElementById('contact-form-wrap').style.display = 'none';
+    document.getElementById('contact-success').style.display = 'block';
+  }, function() {
+    errEl.textContent = 'Erreur envoi. Réessaie ou contacte-moi par Instagram.';
+    errEl.style.display = 'block';
+  });
+}
+
+window.addEventListener('load', function() { triggerReveal(); });
+</script>
+</body>
+</html>
