@@ -628,19 +628,19 @@ footer{background:#040404;border-top:1px solid var(--border);padding:40px 56px;d
     <div class="download-box">
       <h4>Tes programmes</h4>
       <p>Clique sur le lien correspondant à ton achat pour accéder au PDF.</p>
-      <div class="dl-item">
+      <div class="dl-item" id="dl-starter">
         <div>
           <div class="dl-name">Programme Starter</div>
           <div style="font-size:11px;color:var(--muted);margin-top:2px">Débutant · 4 semaines</div>
         </div>
-        <a href="https://drive.google.com/uc?export=download&id=1x5o8R2wYhMxZtEgUqVjxI1o1ikOpE7e8" target="_blank" class="dl-link">Télécharger →</a>
+        <a href="https://drive.google.com/file/d/1x5o8R2wYhMxZtEgUqVjxI1o1ikOpE7e8/view?usp=sharing" target="_blank" class="dl-link">Télécharger →</a>
       </div>
-      <div class="dl-item">
+      <div class="dl-item" id="dl-hybride">
         <div>
           <div class="dl-name">Programme Hybride</div>
           <div style="font-size:11px;color:var(--muted);margin-top:2px">Avancé · 4 semaines</div>
         </div>
-        <a href="https://drive.google.com/uc?export=download&id=11fMl3Ik-7EwTdJl5yJhmu0TXZ05C_83J" target="_blank" class="dl-link">Télécharger →</a>
+        <a href="https://drive.google.com/file/d/11fMl3Ik-7EwTdJl5yJhmu0TXZ05C_83J/view?usp=sharing" target="_blank" class="dl-link">Télécharger →</a>
       </div>
     </div>
     <p style="font-size:12px;color:var(--muted);margin-top:28px;max-width:400px">Problème d'accès ? Contacte sur Instagram <strong style="color:var(--text)">@nafez_off</strong> ou <strong style="color:var(--text)">nafezxnayr@gmail.com</strong></p>
@@ -707,7 +707,14 @@ function submitContact(){
 // Redirection auto si paramètre success dans URL
 (function(){
   var params=new URLSearchParams(window.location.search);
-  if(params.get('success')==='1'){showPage('confirmation');}
+  var s=params.get('success');
+  if(s==='starter'||s==='hybride'||s==='1'||params.get('session_id')){
+    showPage('confirmation');
+    setTimeout(function(){
+      if(s==='starter'){var e=document.getElementById('dl-hybride');if(e)e.style.display='none';}
+      else if(s==='hybride'){var e=document.getElementById('dl-starter');if(e)e.style.display='none';}
+    },150);
+  }
 })();
 window.addEventListener('load',function(){triggerReveal();});
 </script>
