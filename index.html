@@ -477,6 +477,7 @@ footer{background:#040404;border-top:1px solid var(--border);padding:40px 56px;d
             <div class="form-group"><label>Nom</label><input type="text" id="c-nom" placeholder="Ton nom"></div>
           </div>
           <div class="form-group"><label>Email</label><input type="email" id="c-email" placeholder="toi@email.com"></div>
+          <div class="form-group"><label>Téléphone (WhatsApp)</label><input type="tel" id="c-phone" placeholder="+33 6 XX XX XX XX"></div>
           <div class="form-group"><label>Objectif Principal</label>
             <select id="c-objectif">
               <option value="">Sélectionne ton objectif</option>
@@ -732,13 +733,14 @@ function submitCoaching(){
   var prenom=document.getElementById('c-prenom').value.trim();
   var nom=document.getElementById('c-nom').value.trim();
   var email=document.getElementById('c-email').value.trim();
+  var phone=document.getElementById('c-phone').value.trim();
   var objectif=document.getElementById('c-objectif').value;
   var niveau=document.getElementById('c-niveau').value;
   var message=document.getElementById('c-message').value.trim();
   var errEl=document.getElementById('coaching-error');
   if(!prenom||!nom||!email||!objectif||!niveau||!message){errEl.style.display='block';return;}
   errEl.style.display='none';
-  emailjs.send('service_oh5c5iu','template_nt0z8y6',{from_name:prenom+' '+nom,from_email:email,objectif:objectif,niveau:niveau,message:message}).then(function(){
+  emailjs.send('service_oh5c5iu','template_nt0z8y6',{from_name:prenom+' '+nom,from_email:email,objectif:objectif,niveau:niveau,message:'Tel: '+phone+' | '+message}).then(function(){
     document.getElementById('coaching-form-wrap').style.display='none';
     document.getElementById('coaching-success').style.display='block';
   },function(){errEl.textContent='Erreur envoi. Contacte-moi par Instagram.';errEl.style.display='block';});
