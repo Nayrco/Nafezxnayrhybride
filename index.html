@@ -50,6 +50,10 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:18px 5
 .prog-card{flex:1;background:var(--bg3);padding:40px 32px;border:1px solid var(--border);position:relative;border-radius:2px;transition:border-color .3s}
 .prog-card:hover{border-color:rgba(0,255,170,.2)}
 .prog-card.featured{border-color:rgba(0,255,170,.28)}
+.prog-stars{display:flex;align-items:center;gap:6px;margin-bottom:12px}
+.prog-stars-icons{display:flex;gap:2px}
+.prog-stars-icons span{color:#FFD700;font-size:13px}
+.prog-stars-count{font-size:11px;color:var(--muted);font-weight:500}
 .prog-badge{position:absolute;top:20px;right:20px;background:var(--accent);color:#060606;font-size:9px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:4px 12px;border-radius:999px}
 .prog-tag{font-size:10px;font-weight:700;color:rgba(0,255,170,.5);letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px}
 .prog-title{font-size:24px;font-weight:900;letter-spacing:-.03em;margin-bottom:10px}
@@ -164,28 +168,62 @@ footer{background:#040404;border-top:1px solid var(--border);padding:40px 56px;d
 .dl-link{font-size:11px;font-weight:700;color:var(--accent);text-decoration:none;letter-spacing:.05em;text-transform:uppercase}
 .dl-link:hover{opacity:.75}
 
+/* HAMBURGER */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none}
+.hamburger span{display:block;width:22px;height:2px;background:var(--text);border-radius:2px;transition:transform .3s,opacity .3s}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mobile-menu{display:none;position:fixed;top:57px;left:0;right:0;background:rgba(6,6,6,0.98);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);z-index:99;padding:24px 24px 32px;flex-direction:column;gap:0}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-size:13px;font-weight:500;text-transform:uppercase;letter-spacing:0.15em;color:var(--muted);text-decoration:none;padding:14px 0;border-bottom:1px solid var(--border);cursor:pointer;transition:color .2s}
+.mobile-menu a:last-child{border-bottom:none;margin-top:16px;background:var(--accent);color:#060606!important;font-weight:800;padding:14px 24px;border-radius:999px;text-align:center}
+.mobile-menu a:hover{color:var(--text)}
+
 @media(max-width:768px){
   nav{padding:16px 24px}
   .nav-links{display:none}
+  .hamburger{display:flex}
   .hero{padding:100px 24px 60px}
   .hero h1{font-size:48px}
   .stats-bar{flex-wrap:wrap}
   .stat-item{flex:0 0 50%;border-bottom:1px solid var(--border)}
-  .section{padding:64px 24px}
-  .s-title{font-size:34px}
+  .section{padding:56px 20px}
+  .s-title{font-size:32px;margin-bottom:36px}
+  .s-sub{font-size:14px}
   .prog-grid,.testi-grid,.method-grid{flex-direction:column}
-  .coaching-wrap,.contact-wrap{flex-direction:column;padding:80px 24px 40px}
-  .coaching-left h1{font-size:42px}
-  .cta-band{padding:80px 24px}
-  .cta-band h2{font-size:38px}
-  footer{padding:32px 24px;flex-direction:column;text-align:center}
+  .prog-card{padding:28px 22px}
+  .prog-price{font-size:36px}
+  .coaching-wrap,.contact-wrap{flex-direction:column;padding:72px 20px 40px;gap:40px}
+  .coaching-left h1{font-size:38px}
+  .coaching-left p{font-size:14px}
+  .cta-band{padding:64px 20px}
+  .cta-band h2{font-size:34px}
+  .cta-btns{flex-direction:column;align-items:center}
+  footer{padding:28px 20px;flex-direction:column;text-align:center;gap:16px}
+  .footer-links{flex-wrap:wrap;justify-content:center;gap:16px}
   .form-row{flex-direction:column}
-  .physique-wrap{flex-direction:column}
-  .physique-img{width:100%;min-width:unset}
+  .form-card{padding:28px 20px}
+  .physique-wrap{flex-direction:column;gap:28px}
+  .physique-img{width:100%;min-width:unset;max-height:420px;object-fit:cover;object-position:top}
+  .physique-right h3{font-size:26px}
   .meal-grid{flex-direction:column}
   .meal-img{height:220px}
   .msg-scroll{gap:12px}
-  .msg-item{min-width:160px;max-width:180px}
+  .msg-item{min-width:155px;max-width:175px}
+  .hero h1{font-size:44px}
+  .hero-sub{font-size:15px}
+  .stats-bar{flex-wrap:wrap}
+  .stat-item{flex:0 0 50%;border-bottom:1px solid var(--border)}
+  .stat-n{font-size:34px}
+  .hero-btns{flex-direction:column;align-items:center}
+  .btn-p,.btn-s{width:100%;justify-content:center;max-width:320px}
+  .confirm-page{padding:60px 20px}
+  .confirm-page h1{font-size:36px}
+  .download-box{padding:22px 16px}
+  .steps{margin-top:28px}
+  .testi-card{padding:24px 18px}
+  .method-step{padding:28px 20px}
 }
 </style>
 </head>
@@ -201,7 +239,18 @@ footer{background:#040404;border-top:1px solid var(--border);padding:40px 56px;d
     <li><a onclick="showPage('contact')">Contact</a></li>
     <li><a onclick="showPage('coaching')" class="nav-cta">Commencer</a></li>
   </ul>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a onclick="navGo('home')">Accueil</a>
+  <a onclick="navGo('programmes')">Programmes</a>
+  <a onclick="navGo('coaching')">Coaching 1:1</a>
+  <a onclick="navGo('temoignages')">Résultats</a>
+  <a onclick="navGo('contact')">Contact</a>
+  <a onclick="navGo('coaching')">Commencer</a>
+</div>
 
 <!-- HOME -->
 <div id="page-home" class="page active">
@@ -286,6 +335,7 @@ footer{background:#040404;border-top:1px solid var(--border);padding:40px 56px;d
     </div>
     <div class="prog-grid">
       <div class="prog-card reveal d1">
+        <div class="prog-stars"><div class="prog-stars-icons"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><div class="prog-stars-count">4.9 · 127 avis</div></div>
         <div class="prog-tag">Débutant</div>
         <div class="prog-title">Programme Starter</div>
         <div class="prog-desc">Construis tes bases. Force, endurance et confiance en 4 semaines — sans matériel.</div>
@@ -295,6 +345,7 @@ footer{background:#040404;border-top:1px solid var(--border);padding:40px 56px;d
       </div>
       <div class="prog-card featured reveal d2">
         <div class="prog-badge">Programme Complet</div>
+        <div class="prog-stars"><div class="prog-stars-icons"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><div class="prog-stars-count">4.9 · 243 avis</div></div>
         <div class="prog-tag">Avancé</div>
         <div class="prog-title">Programme Hybride</div>
         <div class="prog-desc">4 semaines intensives pour transformer ton physique au niveau supérieur.</div>
@@ -339,6 +390,7 @@ footer{background:#040404;border-top:1px solid var(--border);padding:40px 56px;d
     </div>
     <div class="prog-grid">
       <div class="prog-card reveal d1">
+        <div class="prog-stars"><div class="prog-stars-icons"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><div class="prog-stars-count">4.9 · 127 avis</div></div>
         <div class="prog-tag">01 — Débutant</div>
         <div class="prog-title">Programme Starter</div>
         <div class="prog-desc">Conçu pour les débutants ou ceux qui reprennent. Construis une base solide en 4 semaines.</div>
@@ -358,6 +410,7 @@ footer{background:#040404;border-top:1px solid var(--border);padding:40px 56px;d
       </div>
       <div class="prog-card featured reveal d2">
         <div class="prog-badge">Programme Complet</div>
+        <div class="prog-stars"><div class="prog-stars-icons"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><div class="prog-stars-count">4.9 · 243 avis</div></div>
         <div class="prog-tag">02 — Avancé</div>
         <div class="prog-title">Programme Hybride</div>
         <div class="prog-desc">Le programme complet. Plus de volume, plus d'intensité, plus de résultats.</div>
@@ -717,6 +770,19 @@ function submitContact(){
   }
 })();
 window.addEventListener('load',function(){triggerReveal();});
+function toggleMenu(){
+  var h=document.getElementById('hamburger');
+  var m=document.getElementById('mobile-menu');
+  h.classList.toggle('open');
+  m.classList.toggle('open');
+}
+function navGo(id){
+  var h=document.getElementById('hamburger');
+  var m=document.getElementById('mobile-menu');
+  h.classList.remove('open');
+  m.classList.remove('open');
+  showPage(id);
+}
 </script>
 </body>
 </html>
