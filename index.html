@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NAFEZ x NAYR — Coaching Sportif d'Élite</title>
+<title>NAFEZ x NAYR — Coaching Sportif Poids de Corps | Transforme ton physique</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23060606'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='central' text-anchor='middle' font-family='Arial Black,sans-serif' font-weight='900' font-size='11' fill='%2300ffaa'%3EN%C3%97N%3C/text%3E%3C/svg%3E">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 <style>
@@ -228,6 +229,12 @@ footer{background:#040404;border-top:1px solid var(--border);padding:40px 56px;d
 </style>
 </head>
 <body>
+<div id="page-loader" style="position:fixed;inset:0;background:#060606;z-index:9999;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:20px">
+  <div style="font-size:22px;font-weight:900;letter-spacing:-0.05em;color:#f0f0f0">NAFEZ<span style="color:#00ffaa"> x </span>NAYR</div>
+  <div style="width:120px;height:2px;background:rgba(255,255,255,0.08);border-radius:2px;overflow:hidden">
+    <div id="loader-bar" style="height:100%;width:0%;background:#00ffaa;border-radius:2px;transition:width .7s cubic-bezier(.16,1,.3,1)"></div>
+  </div>
+</div>
 
 <nav>
   <div class="logo" onclick="showPage('home')">NAFEZ<span class="x"> x </span>NAYR</div>
@@ -406,7 +413,11 @@ footer{background:#040404;border-top:1px solid var(--border);padding:40px 56px;d
         </div>
         <div class="prog-price"><sup>€</sup>29<span style="font-size:22px">.99</span></div>
         <div class="prog-period">Paiement unique · Accès immédiat</div>
-        <a href="https://buy.stripe.com/00w00j08Y1TMeIK3pecEw01" target="_blank" class="prog-buy outline">Acheter ce programme</a>
+        <a href="https://buy.stripe.com/00w00j08Y1TMeIK3pecEw01" target="_blank" class="prog-buy outline">Acheter ce programme</a><div style="display:flex;align-items:center;justify-content:center;gap:14px;margin-top:12px;flex-wrap:wrap">
+  <span style="display:flex;align-items:center;gap:4px;font-size:10px;color:rgba(240,240,240,.3)"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Paiement sécurisé</span>
+  <span style="display:flex;align-items:center;gap:4px;font-size:10px;color:rgba(240,240,240,.3)"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Stripe</span>
+  <span style="display:flex;align-items:center;gap:4px;font-size:10px;color:rgba(240,240,240,.3)"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Accès immédiat</span>
+</div>
       </div>
       <div class="prog-card featured reveal d2">
         <div class="prog-badge">Programme Complet</div>
@@ -426,7 +437,11 @@ footer{background:#040404;border-top:1px solid var(--border);padding:40px 56px;d
         </div>
         <div class="prog-price"><sup>€</sup>99<span style="font-size:22px">.99</span></div>
         <div class="prog-period">Paiement unique · Accès immédiat</div>
-        <a href="https://buy.stripe.com/00wdR9f3S0PIfMO3pecEw00" target="_blank" class="prog-buy">Acheter ce programme</a>
+        <a href="https://buy.stripe.com/00wdR9f3S0PIfMO3pecEw00" target="_blank" class="prog-buy">Acheter ce programme</a><div style="display:flex;align-items:center;justify-content:center;gap:14px;margin-top:12px;flex-wrap:wrap">
+  <span style="display:flex;align-items:center;gap:4px;font-size:10px;color:rgba(240,240,240,.3)"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Paiement sécurisé</span>
+  <span style="display:flex;align-items:center;gap:4px;font-size:10px;color:rgba(240,240,240,.3)"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Stripe</span>
+  <span style="display:flex;align-items:center;gap:4px;font-size:10px;color:rgba(240,240,240,.3)"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Accès immédiat</span>
+</div>
       </div>
     </div>
   </section>
@@ -702,6 +717,34 @@ footer{background:#040404;border-top:1px solid var(--border);padding:40px 56px;d
   </div>
 </div>
 
+
+<div id="page-mentions" class="page">
+  <section class="section" style="padding-top:120px;max-width:760px;margin:0 auto">
+    <div class="reveal">
+      <p class="s-tag">Légal</p>
+      <h2 class="s-title" style="font-size:38px">Mentions <em>Légales</em></h2>
+    </div>
+    <div style="font-size:14px;color:rgba(240,240,240,.65);line-height:1.9" class="reveal d1">
+      <h3 style="font-size:16px;font-weight:700;color:#f0f0f0;margin:36px 0 10px">Éditeur du site</h3>
+      <p>Nom : Ryan Debeddes<br>Email : <a href="mailto:nafezxnayr@gmail.com" style="color:var(--accent)">nafezxnayr@gmail.com</a><br>Réseaux : Instagram <a href="https://instagram.com/nafez_off" target="_blank" style="color:var(--accent)">@nafez_off</a> · TikTok <a href="https://tiktok.com/@nafez10" target="_blank" style="color:var(--accent)">@nafez10</a></p>
+      <h3 style="font-size:16px;font-weight:700;color:#f0f0f0;margin:36px 0 10px">Hébergement</h3>
+      <p>Vercel Inc., 340 Pine Street, Suite 701, San Francisco, CA 94104, USA — <a href="https://vercel.com" target="_blank" style="color:var(--accent)">vercel.com</a></p>
+      <h3 style="font-size:16px;font-weight:700;color:#f0f0f0;margin:36px 0 10px">Paiements</h3>
+      <p>Les paiements sont traités par Stripe Inc. Aucune donnée bancaire n'est collectée ni stockée par ce site. Stripe est certifié PCI-DSS niveau 1.</p>
+      <h3 style="font-size:16px;font-weight:700;color:#f0f0f0;margin:36px 0 10px">Propriété intellectuelle</h3>
+      <p>L'ensemble du contenu de ce site (textes, images, programmes) est la propriété exclusive de Ryan Debeddes. Toute reproduction, même partielle, est strictement interdite sans autorisation écrite préalable.</p>
+      <h3 style="font-size:16px;font-weight:700;color:#f0f0f0;margin:36px 0 10px">Données personnelles</h3>
+      <p>Les informations collectées via les formulaires (nom, prénom, email, téléphone, objectifs) sont utilisées exclusivement dans le cadre de la relation commerciale. Elles ne sont ni vendues, ni transmises à des tiers.<br><br>Conformément au RGPD, vous disposez d'un droit d'accès, de rectification et de suppression. Contact : <a href="mailto:nafezxnayr@gmail.com" style="color:var(--accent)">nafezxnayr@gmail.com</a></p>
+      <h3 style="font-size:16px;font-weight:700;color:#f0f0f0;margin:36px 0 10px">Politique de remboursement</h3>
+      <p>Les programmes étant des produits numériques à téléchargement immédiat, conformément à l'article L221-28 du Code de la consommation, le droit de rétractation ne s'applique pas dès lors que le téléchargement a été initié. En cas de litige : <a href="mailto:nafezxnayr@gmail.com" style="color:var(--accent)">nafezxnayr@gmail.com</a></p>
+      <h3 style="font-size:16px;font-weight:700;color:#f0f0f0;margin:36px 0 10px">Cookies</h3>
+      <p>Ce site n'utilise pas de cookies de traçage ou de ciblage publicitaire.</p>
+      <h3 style="font-size:16px;font-weight:700;color:#f0f0f0;margin:36px 0 10px">Loi applicable</h3>
+      <p>Le présent site est soumis au droit français. En cas de litige, les tribunaux français seront seuls compétents.</p>
+      <p style="margin-top:40px;font-size:12px;color:rgba(240,240,240,.25)">Dernière mise à jour : avril 2026</p>
+    </div>
+  </section>
+</div>
 <footer>
   <div class="footer-logo" onclick="showPage('home')">NAFEZ<span class="x"> x </span>NAYR</div>
   <ul class="footer-links">
@@ -710,16 +753,39 @@ footer{background:#040404;border-top:1px solid var(--border);padding:40px 56px;d
     <li><a onclick="showPage('temoignages')">Résultats</a></li>
     <li><a onclick="showPage('contact')">Contact</a></li>
   </ul>
-  <p class="footer-copy">© 2026 NAFEZ x NAYR. Tous droits réservés.</p>
+  <p class="footer-copy">© 2026 NAFEZ x NAYR. Tous droits réservés. · <a onclick="showPageDirect('mentions')" style="color:rgba(240,240,240,.28);text-decoration:none;cursor:pointer" onmouseover="this.style.color='#f0f0f0'" onmouseout="this.style.color='rgba(240,240,240,.28)'">Mentions légales</a></p>
 </footer>
 
 <script>
 emailjs.init('XaMIyq8J3OnuJy8fU');
 function showPage(id){
   if(id==='confirmation') return;
-  document.querySelectorAll('.page').forEach(function(p){p.classList.remove('active')});
-  var t=document.getElementById('page-'+id);
-  if(t){t.classList.add('active');window.scrollTo(0,0);setTimeout(triggerReveal,80);}
+  var cur=document.querySelector('.page.active');
+  if(cur){cur.style.transition='opacity .15s ease';cur.style.opacity='0';}
+  setTimeout(function(){
+    document.querySelectorAll('.page').forEach(function(p){p.classList.remove('active');p.style.opacity='';p.style.transition='';});
+    var t=document.getElementById('page-'+id);
+    if(t){
+      t.style.opacity='0';t.style.transition='none';
+      t.classList.add('active');window.scrollTo(0,0);
+      requestAnimationFrame(function(){
+        t.style.transition='opacity .35s ease,transform .35s cubic-bezier(.16,1,.3,1)';
+        t.style.transform='translateY(0)';t.style.opacity='1';
+      });
+      setTimeout(triggerReveal,80);
+    }
+  },160);
+}
+function showPageDirect(id){
+  var cur=document.querySelector('.page.active');
+  if(cur){cur.style.transition='opacity .15s ease';cur.style.opacity='0';}
+  setTimeout(function(){
+    document.querySelectorAll('.page').forEach(function(p){p.classList.remove('active');p.style.opacity='';p.style.transition='';});
+    var t=document.getElementById('page-'+id);
+    if(t){t.style.opacity='0';t.classList.add('active');window.scrollTo(0,0);
+      requestAnimationFrame(function(){t.style.transition='opacity .35s ease';t.style.opacity='1';});
+      setTimeout(triggerReveal,80);}
+  },160);
 }
 function showConfirmation(){
   document.querySelectorAll('.page').forEach(function(p){p.classList.remove('active')});
@@ -776,7 +842,16 @@ function submitContact(){
     },150);
   }
 })();
-window.addEventListener('load',function(){triggerReveal();});
+window.addEventListener('load',function(){
+  triggerReveal();
+  var bar=document.getElementById('loader-bar');
+  var loader=document.getElementById('page-loader');
+  setTimeout(function(){if(bar)bar.style.width='100%';},50);
+  setTimeout(function(){
+    if(loader){loader.style.transition='opacity .4s ease';loader.style.opacity='0';}
+    setTimeout(function(){if(loader)loader.style.display='none';},400);
+  },800);
+});
 function toggleMenu(){
   var h=document.getElementById('hamburger');
   var m=document.getElementById('mobile-menu');
