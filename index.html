@@ -709,7 +709,6 @@ footer{background:#040404;border-top:1px solid var(--border);padding:40px 56px;d
     <li><a onclick="showPage('coaching')">Coaching 1:1</a></li>
     <li><a onclick="showPage('temoignages')">Résultats</a></li>
     <li><a onclick="showPage('contact')">Contact</a></li>
-    <li><a onclick="showPage('confirmation')">Accès Programme</a></li>
   </ul>
   <p class="footer-copy">© 2026 NAFEZ x NAYR. Tous droits réservés.</p>
 </footer>
@@ -717,8 +716,14 @@ footer{background:#040404;border-top:1px solid var(--border);padding:40px 56px;d
 <script>
 emailjs.init('XaMIyq8J3OnuJy8fU');
 function showPage(id){
+  if(id==='confirmation') return;
   document.querySelectorAll('.page').forEach(function(p){p.classList.remove('active')});
   var t=document.getElementById('page-'+id);
+  if(t){t.classList.add('active');window.scrollTo(0,0);setTimeout(triggerReveal,80);}
+}
+function showConfirmation(){
+  document.querySelectorAll('.page').forEach(function(p){p.classList.remove('active')});
+  var t=document.getElementById('page-confirmation');
   if(t){t.classList.add('active');window.scrollTo(0,0);setTimeout(triggerReveal,80);}
 }
 function triggerReveal(){
@@ -764,7 +769,7 @@ function submitContact(){
   var params=new URLSearchParams(window.location.search);
   var s=params.get('success');
   if(s==='starter'||s==='hybride'||s==='1'||params.get('session_id')){
-    showPage('confirmation');
+    showConfirmation();
     setTimeout(function(){
       if(s==='starter'){var e=document.getElementById('dl-hybride');if(e)e.style.display='none';}
       else if(s==='hybride'){var e=document.getElementById('dl-starter');if(e)e.style.display='none';}
